@@ -6,7 +6,7 @@
 /*   By: ychahbi <ychahbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:49:58 by ychahbi           #+#    #+#             */
-/*   Updated: 2022/12/17 22:03:41 by ychahbi          ###   ########.fr       */
+/*   Updated: 2022/12/24 12:49:02 by ychahbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 static void calc_letter(char *str, int *c, int *e, int *p)
 {
-    int i = 0;
+    int i;
+
+    i = 0;
     while(str[i] != '\0')
     {
         if(str[i] == 'P')
@@ -27,20 +29,39 @@ static void calc_letter(char *str, int *c, int *e, int *p)
     }
 }
 
-int cheack_map()
+static void count_init(int *c, int *e, int *p)
 {
+    *c = 0;
+    *e = 0;
+    *p = 0;
+}
+static int cheak_open(char *s)
+{
+    int fd;
+    
+    if (cheak_map_path(s) == 1)
+        return (ft_putstr("(Path Error) >> "), 1);
+    fd = open(s, O_RDONLY);
+    if (fd < 0 || read(fd, 0, 0) < 0)
+	    return (ft_putstr("(Coulden't Read) >> "), 1);
+    return (fd);
+}
+int cheack_map(char *s, struct s_data *t_data)
+{
+    t_data->map_path = s;
+    t_data->map_to_tab = map_to_table(t_data);
     char *first_line;
     char *last_line;
     int len_size;
     int count;
-    int p_count = 0;
-    int e_count = 0;
-    int c_count = 0;
-    char *map_src = "maps/map.ber";
+    int p_count;
+    int e_count;
+    int c_count;
+    int fd;
+
     count = 1;
-    if (cheak_map_path(map_src) == 1)
-        return 1;
-    int fd = open(map_src, O_RDONLY);
+    fd = cheak_open(s);
+    count_init(&c_count, &e_count, &p_count);
     first_line = get_next_line(fd);
     len_size = str_len(first_line);
     last_line = calloc(sizeof(char), len_size);
@@ -48,26 +69,24 @@ int cheack_map()
     {
         count++;
         if (str_len(last_line) != len_size)
-            return 1;
+            return (ft_putstr("(Line size) >> "), 1);
         if(last_line[0] != '1' || last_line[len_size -2] != '1')
-            return 1;
+            return (ft_putstr("(dont't have closed sides) >> "), 1);
         calc_letter(last_line, &c_count, &e_count, &p_count);
     }
     if( p_count != 1 || e_count != 1 || c_count < 1)
-        return 1;
+        return (ft_putstr("(player, exit, collectables, one of them or all not exist) >> "), 1);
     if (count < 3)
-        return 1;
-    char *first_line_temp = first_line;
-    char *last_line_temp = last_line;
+        return (ft_putstr("(map counine less lines) >> "), 1);
+    if (backtracking_the_game(t_data) == 1)
+        return (ft_putstr("(The player can't win the game) --> "), 1);
     while(*first_line != '\n' && *last_line != '\n')
     {
         if (*(last_line) == '0' || *(last_line) == '0')
-            return (1);
+            return (ft_putstr("(Closed side is missing (firrst or last)) >> "), 1);
         (first_line)++;
         (last_line)++;
     }
-    free(first_line_temp);
-    free(last_line_temp);
-    //free(last_line);
+    t_data->colloctive_s = c_count;
     return (0);
 }
