@@ -6,12 +6,12 @@
 /*   By: ychahbi <ychahbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 12:30:49 by ychahbi           #+#    #+#             */
-/*   Updated: 2022/12/24 14:47:57 by ychahbi          ###   ########.fr       */
+/*   Updated: 2022/12/24 18:50:51 by ychahbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-void give_me_x_y(char **tab_tow, int *x, int *y)
+void	give_me_x_y(char **tab_tow, int *x, int *y)
 {
 	int i =0;
 	int j = 0;
@@ -20,7 +20,7 @@ void give_me_x_y(char **tab_tow, int *x, int *y)
 		j = 0;
 		while (tab_tow[i][j])
 		{
-			if(tab_tow[i][j] == 'P')
+			if (tab_tow[i][j] == 'P')
 			{
 				*x = i;
 				*y = j;

@@ -6,7 +6,7 @@
 /*   By: ychahbi <ychahbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 08:07:55 by ychahbi           #+#    #+#             */
-/*   Updated: 2022/12/24 08:07:56 by ychahbi          ###   ########.fr       */
+/*   Updated: 2022/12/24 18:33:24 by ychahbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 void	*ft_strcpy(char *dst, char *src)
 {
 	size_t	dex;
-	int n;
+	int		n;
 
 	dex = 0;
-	if(!src)
+	if (!src)
 		return (NULL);
 	n = str_len(src);
 	while (dex < n)

@@ -6,13 +6,13 @@
 /*   By: ychahbi <ychahbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 19:01:27 by ychahbi           #+#    #+#             */
-/*   Updated: 2022/12/24 15:10:12 by ychahbi          ###   ########.fr       */
+/*   Updated: 2022/12/24 18:22:36 by ychahbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	struct s_data	*t_data;
 
@@ -22,6 +22,5 @@ int main(int argc, char **argv)
 		if (cheack_map(argv[1], t_data) == 1)
 			return (ft_putstr("Map Error"), 0);
 		show_the_window(t_data);
-		//system("leaks test");
 	}
 }
