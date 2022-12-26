@@ -11,6 +11,21 @@
 /* ************************************************************************** */
 
 #include "so_long.h"
+void floodFill(int x, int y, int oldColor, int newColor)
+{
+    if (x < 0 || x >= width || y < 0 || y >= height)
+        return;
+
+    if (image[x][y] != oldColor)
+        return;
+
+    image[x][y] = newColor;
+
+    floodFill(x+1, y, oldColor, newColor);
+    floodFill(x-1, y, oldColor, newColor);
+    floodFill(x, y+1, oldColor, newColor);
+    floodFill(x, y-1, oldColor, newColor);
+}
 void	give_me_x_y(char **tab_tow, int *x, int *y)
 {
 	int i =0;
