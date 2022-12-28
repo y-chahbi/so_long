@@ -6,13 +6,13 @@
 /*   By: ychahbi <ychahbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 18:29:49 by ychahbi           #+#    #+#             */
-/*   Updated: 2022/12/24 18:30:52 by ychahbi          ###   ########.fr       */
+/*   Updated: 2022/12/28 02:16:51 by ychahbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static char	*ft_strdup(const char *s1)
+char	*ft_strdup(const char *s1)
 {
 	char	*ptr;
 	int		dex;
@@ -33,7 +33,7 @@ static char	*ft_strdup(const char *s1)
 	return (ptr);
 }
 
-char	*ft_strjoi(char const *s1, char const *s2)
+char	*ft_strjoi(char *s1, char *s2)
 {
 	size_t		dex;
 	size_t		dexx;
@@ -54,5 +54,5 @@ char	*ft_strjoi(char const *s1, char const *s2)
 	while (dexx < ft_strlen(s2))
 		ptr[dex++] = s2[dexx++];
 	ptr[dex] = '\0';
-	return (ptr);
+	return (free(s1), ptr);
 }

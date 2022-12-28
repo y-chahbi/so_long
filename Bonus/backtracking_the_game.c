@@ -6,7 +6,7 @@
 /*   By: ychahbi <ychahbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 12:30:49 by ychahbi           #+#    #+#             */
-/*   Updated: 2022/12/27 15:17:26 by ychahbi          ###   ########.fr       */
+/*   Updated: 2022/12/28 01:33:28 by ychahbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	backtracking_the_game(struct s_data *t_data, char **tab, int x, int y)
 {
-	if (t_data->map_to_tab[x][y] == '1' || tab[x][y] == 'Z')
+	if (tab[x][y] == '1' || tab[x][y] == 'Z' || tab[x][y] == 'I')
 		return (0);
 	if (tab[x][y] == 'E')
 		return (1);
@@ -23,6 +23,19 @@ int	backtracking_the_game(struct s_data *t_data, char **tab, int x, int y)
 		|| backtracking_the_game(t_data, tab, x + 1, y)
 		|| backtracking_the_game(t_data, tab, x, y + 1)
 		|| backtracking_the_game(t_data, tab, x, y - 1));
+}
+
+void	free_it(char **s)
+{
+	int	a;
+
+	a = 0;
+	while (s[a])
+	{
+		free(s[a]);
+		a++;
+	}
+	free(s);
 }
 
 int	backtracking(struct s_data *t_data)
@@ -49,6 +62,6 @@ int	backtracking(struct s_data *t_data)
 		x++;
 	}
 	if (backtracking_the_game(t_data, tab_tow, lo[0][0], lo[0][1]) == 0)
-		return (1);
-	return (0);
+		return (free_it(tab_tow), 1);
+	return (free_it(tab_tow), 0);
 }

@@ -6,7 +6,7 @@
 /*   By: ychahbi <ychahbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 16:15:09 by ychahbi           #+#    #+#             */
-/*   Updated: 2022/12/24 18:18:38 by ychahbi          ###   ########.fr       */
+/*   Updated: 2022/12/28 03:15:29 by ychahbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,35 @@ static void	func_short(struct s_data *t_data, int i, int j)
 	t_data->map_to_tab[i][j - 1] = 'P';
 	t_data->count++;
 	t_data->player_side = 1;
-	ft_printnbr (t_data->count);
-	write(1, "\n", 1);
 }
 
-static void	put_youwin(void)
+static void	put_youwin(struct s_data *t_data)
 {
+	int	i;
+
+	i = 0;
+	while (t_data->map_to_tab[i])
+	{
+		free(t_data->map_to_tab[i]);
+		i++;
+	}
+	free(t_data->map_to_tab);
 	ft_putstr("You win");
+	exit(0);
+}
+
+static void	put_youlose(struct s_data *t_data)
+{
+	int	i;
+
+	i = 0;
+	while (t_data->map_to_tab[i])
+	{
+		free(t_data->map_to_tab[i]);
+		i++;
+	}
+	free(t_data->map_to_tab);
+	ft_putstr("You Lose!");
 	exit(0);
 }
 
@@ -34,7 +56,9 @@ static void	if_func(struct s_data *t_data, int i, int j)
 		(t_data->map_to_tab[i][j - 1] == 'E' && t_data->colloctive_s != 0))
 		return ;
 	if (t_data->map_to_tab[i][j - 1] == 'E' && t_data->colloctive_s == 0)
-		put_youwin();
+		put_youwin(t_data);
+	if (t_data->map_to_tab[i][j -1] == 'I')
+		put_youlose(t_data);
 	if (t_data->map_to_tab[i][j - 1] == 'C')
 		t_data->colloctive_s--;
 	func_short(t_data, i, j);

@@ -6,7 +6,7 @@
 /*   By: ychahbi <ychahbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:34:00 by ychahbi           #+#    #+#             */
-/*   Updated: 2022/12/27 00:01:15 by ychahbi          ###   ########.fr       */
+/*   Updated: 2022/12/28 03:12:01 by ychahbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,15 @@ int	key_handler(int keycode, struct s_data *t_data)
 
 int	exit_game(struct s_data *t_data)
 {
+	int	i;
+
+	i = 0;
+	while (t_data->map_to_tab[i])
+	{
+		free(t_data->map_to_tab[i]);
+		i++;
+	}
+	free(t_data->map_to_tab);
 	exit (0);
 	return (0);
 }
@@ -52,6 +61,10 @@ static void	mlx_put_t_data(struct s_data *t_data, int *width, int *height)
 			t_data->mlx, "pics/wall.xmp", width, height);
 	t_data->img_coll = mlx_xpm_file_to_image(
 			t_data->mlx, "pics/coll.xmp", width, height);
+	t_data->img_enm = mlx_xpm_file_to_image(
+			t_data->mlx, "pics/enm.xmp", width, height);
+	t_data->img_enm_rev = mlx_xpm_file_to_image(
+			t_data->mlx, "pics/enm_rev.xmp", width, height);
 }
 
 void	show_the_window(struct s_data *t_data)
@@ -69,5 +82,4 @@ void	show_the_window(struct s_data *t_data)
 	mlx_hook(t_data->mlx_win, 02, 0, key_handler, t_data);
 	mlx_hook(t_data->mlx_win, 17, 0, exit_game, t_data);
 	mlx_loop(t_data->mlx);
-	free(t_data);
 }
