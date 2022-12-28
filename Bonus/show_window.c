@@ -6,7 +6,7 @@
 /*   By: ychahbi <ychahbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:34:00 by ychahbi           #+#    #+#             */
-/*   Updated: 2022/12/28 03:12:01 by ychahbi          ###   ########.fr       */
+/*   Updated: 2022/12/28 19:32:49 by ychahbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ static void	mlx_put_t_data(struct s_data *t_data, int *width, int *height)
 
 void	show_the_window(struct s_data *t_data)
 {
-	int	count;
 	int	height;
 	int	width;
 

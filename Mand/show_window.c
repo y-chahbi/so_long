@@ -6,7 +6,7 @@
 /*   By: ychahbi <ychahbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:34:00 by ychahbi           #+#    #+#             */
-/*   Updated: 2022/12/27 00:01:15 by ychahbi          ###   ########.fr       */
+/*   Updated: 2022/12/28 19:25:36 by ychahbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,15 @@ int	key_handler(int keycode, struct s_data *t_data)
 
 int	exit_game(struct s_data *t_data)
 {
+	int	i;
+
+	i = 0;
+	while (t_data->map_to_tab[i])
+	{
+		free(t_data->map_to_tab[i]);
+		i++;
+	}
+	free(t_data->map_to_tab);
 	exit (0);
 	return (0);
 }
@@ -56,7 +65,6 @@ static void	mlx_put_t_data(struct s_data *t_data, int *width, int *height)
 
 void	show_the_window(struct s_data *t_data)
 {
-	int	count;
 	int	height;
 	int	width;
 

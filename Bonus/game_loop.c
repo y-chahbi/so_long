@@ -6,7 +6,7 @@
 /*   By: ychahbi <ychahbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 11:41:53 by ychahbi           #+#    #+#             */
-/*   Updated: 2022/12/28 03:00:23 by ychahbi          ###   ########.fr       */
+/*   Updated: 2022/12/28 19:31:44 by ychahbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	if_part_2(struct s_data *t_data, int countt, int count, int cc)
 
 static void	if_shorts(struct s_data *t_data, int countt, int count, int cc)
 {
-	char *reload;
+	char	*reload;
 
 	reload = ft_itoa(t_data->count);
 	mlx_string_put(t_data->mlx, t_data->mlx_win, 44,
@@ -76,9 +76,9 @@ int	game_loop(struct s_data *t_data)
 
 	if (cc > 500)
 		cc = 0;
+	count = 0;
 	countt = 0;
 	first_while(t_data, count, countt);
-	countt = 0;
 	while (t_data->map_to_tab[countt])
 	{
 		count = 0;

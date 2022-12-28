@@ -6,7 +6,7 @@
 /*   By: ychahbi <ychahbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 08:07:59 by ychahbi           #+#    #+#             */
-/*   Updated: 2022/12/24 18:31:05 by ychahbi          ###   ########.fr       */
+/*   Updated: 2022/12/28 16:16:13 by ychahbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static int	while_it(char const *s, char c, char **ptr, int wd_c)
 	return (1);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char *s, char c)
 {
 	char	**ptr;
 	int		wd_c;
@@ -91,5 +91,6 @@ char	**ft_split(char const *s, char c)
 		return (NULL);
 	if (while_it(s, c, ptr, wd_c) == 0)
 		return (NULL);
+	free(s);
 	return (ptr);
 }

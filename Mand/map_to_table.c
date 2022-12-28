@@ -6,7 +6,7 @@
 /*   By: ychahbi <ychahbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 23:40:08 by ychahbi           #+#    #+#             */
-/*   Updated: 2022/12/24 18:41:06 by ychahbi          ###   ########.fr       */
+/*   Updated: 2022/12/28 14:37:10 by ychahbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ char	**map_to_table(struct s_data *t_data)
 	while (temp)
 	{
 		last_line = ft_strjoi(last_line, temp);
+		free(temp);
 		temp = get_next_line(fd);
 		coll++;
 	}

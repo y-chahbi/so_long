@@ -6,7 +6,7 @@
 /*   By: ychahbi <ychahbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 23:25:08 by ychahbi           #+#    #+#             */
-/*   Updated: 2022/12/28 02:12:15 by ychahbi          ###   ########.fr       */
+/*   Updated: 2022/12/28 16:21:48 by ychahbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ char	*ft_itoa(int n)
 
 	k = n;
 	len = get_lenth(n);
-	// if (n == 0)
-	// 	return (ft_strdup("0"));
 	ptr = malloc(len * sizeof(char));
 	if (!ptr)
 		return (NULL);

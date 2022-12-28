@@ -6,7 +6,7 @@
 /*   By: ychahbi <ychahbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:49:58 by ychahbi           #+#    #+#             */
-/*   Updated: 2022/12/27 15:16:25 by ychahbi          ###   ########.fr       */
+/*   Updated: 2022/12/28 14:35:14 by ychahbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,24 +80,25 @@ int	cheack_map(char *s, struct s_data *t_data)
 	char	*last_line;
 	int		len_size;
 	int		fd;
+	int		i;
 
 	t_data->map_path = s;
 	t_data->map_to_tab = map_to_table(t_data);
 	fd = cheak_open(s);
 	first_line = get_next_line(fd);
 	len_size = str_len(first_line);
-	last_line = calloc(sizeof(char), len_size);
+	last_line = ft_calloc(sizeof(char), len_size);
 	while_count(t_data, last_line, len_size, fd);
 	if (backtracking(t_data) == 1)
 		return (ft_putstr("(The player can't win the game) --> "), 1);
 	if (t_data->map_height > 18 || t_data->map_width > 34)
 		return (ft_putstr("(Map Large) --> "), 1);
-	while (*first_line != '\n' && *last_line != '\n')
+	i = 0;
+	while (first_line[i] != '\n' && last_line[i] != '\n')
 	{
-		if (*(last_line) == '0' || *(last_line) == '0')
+		if (last_line[i] == '0' || (first_line[i]) == '0')
 			return (ft_putstr("(Closed side is missing) >> "), 1);
-		(first_line)++;
-		(last_line)++;
+		i++;
 	}
-	return (0);
+	return (free(first_line), free(last_line), 0);
 }

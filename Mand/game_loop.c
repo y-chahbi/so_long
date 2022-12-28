@@ -6,7 +6,7 @@
 /*   By: ychahbi <ychahbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 11:41:53 by ychahbi           #+#    #+#             */
-/*   Updated: 2022/12/27 15:19:20 by ychahbi          ###   ########.fr       */
+/*   Updated: 2022/12/28 19:23:17 by ychahbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ int	game_loop(struct s_data *t_data)
 	int		count;
 	int		countt;
 
+	count = 0;
 	countt = 0;
 	first_while(t_data, count, countt);
-	countt = 0;
 	while (t_data->map_to_tab[countt])
 	{
 		count = 0;

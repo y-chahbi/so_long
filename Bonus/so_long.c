@@ -6,7 +6,7 @@
 /*   By: ychahbi <ychahbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 19:01:27 by ychahbi           #+#    #+#             */
-/*   Updated: 2022/12/28 03:10:46 by ychahbi          ###   ########.fr       */
+/*   Updated: 2022/12/28 16:13:23 by ychahbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	main(int argc, char **argv)
 		t_data = malloc(sizeof(struct s_data));
 		if (cheack_map(argv[1], t_data) == 1)
 			return (ft_putstr("Map Error"), 0);
-		system("leaks test >> out.txt");
 		show_the_window(t_data);
 	}
 }

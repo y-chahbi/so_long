@@ -6,7 +6,7 @@
 /*   By: ychahbi <ychahbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 16:22:14 by ychahbi           #+#    #+#             */
-/*   Updated: 2022/12/28 03:13:57 by ychahbi          ###   ########.fr       */
+/*   Updated: 2022/12/28 19:32:07 by ychahbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,6 @@ void	move_to_bottom(struct s_data *t_data)
 	int	j;
 
 	i = 0;
+	j = 0;
 	while_func(t_data, i, j);
 }

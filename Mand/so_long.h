@@ -6,7 +6,7 @@
 /*   By: ychahbi <ychahbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 19:01:35 by ychahbi           #+#    #+#             */
-/*   Updated: 2022/12/27 01:27:29 by ychahbi          ###   ########.fr       */
+/*   Updated: 2022/12/28 16:16:43 by ychahbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ void	move_to_right(struct s_data *t_data);
 void	move_to_left(struct s_data *t_data);
 void	move_to_top(struct s_data *t_data);
 void	move_to_bottom(struct s_data *t_data);
-char	*ft_strjoi(char const *s1, char const *s2);
+char	*ft_strjoi(char *s1, char *s2);
 char	**map_to_table(struct s_data *t_data);
-char	**ft_split(char const *s, char c);
+char	**ft_split(char *s, char c);
 void	ft_printnbr(int n);
 int		game_loop(struct s_data *t_data);
 int		backtracking(struct s_data *t_data);
