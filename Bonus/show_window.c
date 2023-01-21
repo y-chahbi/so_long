@@ -6,7 +6,7 @@
 /*   By: ychahbi <ychahbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:34:00 by ychahbi           #+#    #+#             */
-/*   Updated: 2022/12/28 19:32:49 by ychahbi          ###   ########.fr       */
+/*   Updated: 2023/01/21 09:20:23 by ychahbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	key_handler(int keycode, struct s_data *t_data)
 		move_to_bottom(t_data);
 	if (t_data->colloctive_s == 0)
 		game_loop(t_data);
-	if (keycode == 53)
+	if (keycode == 53 || keycode == 12)
 		exit (1);
 	return (0);
 }

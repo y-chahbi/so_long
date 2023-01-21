@@ -6,7 +6,7 @@
 /*   By: ychahbi <ychahbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:49:58 by ychahbi           #+#    #+#             */
-/*   Updated: 2022/12/28 14:35:14 by ychahbi          ###   ########.fr       */
+/*   Updated: 2023/01/21 11:26:20 by ychahbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int	cheack_map(char *s, struct s_data *t_data)
 	i = 0;
 	while (first_line[i] != '\n' && last_line[i] != '\n')
 	{
-		if (last_line[i] == '0' || (first_line[i]) == '0')
+		if (last_line[i] != '1' || (first_line[i]) != '1')
 			return (ft_putstr("(Closed side is missing) >> "), 1);
 		i++;
 	}

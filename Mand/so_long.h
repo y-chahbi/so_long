@@ -6,7 +6,7 @@
 /*   By: ychahbi <ychahbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 19:01:35 by ychahbi           #+#    #+#             */
-/*   Updated: 2022/12/28 16:16:43 by ychahbi          ###   ########.fr       */
+/*   Updated: 2022/12/31 18:52:41 by ychahbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,7 @@ char	**ft_split(char *s, char c);
 void	ft_printnbr(int n);
 int		game_loop(struct s_data *t_data);
 int		backtracking(struct s_data *t_data);
+void	*ft_calloc(size_t count, size_t size);
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
 #endif
