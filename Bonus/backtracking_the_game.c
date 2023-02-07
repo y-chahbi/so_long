@@ -6,15 +6,49 @@
 /*   By: ychahbi <ychahbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 12:30:49 by ychahbi           #+#    #+#             */
-/*   Updated: 2022/12/28 01:33:28 by ychahbi          ###   ########.fr       */
+/*   Updated: 2023/02/07 21:19:37 by ychahbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+int	backtracking_the_game_c(struct s_data *t_data, char **tab, int x, int y)
+{
+	if (tab[x][y] == '1' || tab[x][y] == 'Z')
+		return (0);
+	tab[x][y] = 'Z';
+	return (backtracking_the_game_c(t_data, tab, x - 1, y)
+		|| backtracking_the_game_c(t_data, tab, x + 1, y)
+		|| backtracking_the_game_c(t_data, tab, x, y + 1)
+		|| backtracking_the_game_c(t_data, tab, x, y - 1));
+}
+
+int	no_c(struct s_data *t_data, int x, int y)
+{
+	char	**tab;
+	int		i;
+	int		j;
+
+	tab = map_to_table(t_data);
+	i = 0;
+	backtracking_the_game_c(t_data, tab, x, y);
+	while (i < t_data->map_height)
+	{
+		j = 0;
+		while (j < t_data->map_width)
+		{
+			if (tab[i][j] == 'C')
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
+
 int	backtracking_the_game(struct s_data *t_data, char **tab, int x, int y)
 {
-	if (tab[x][y] == '1' || tab[x][y] == 'Z' || tab[x][y] == 'I')
+	if (t_data->map_to_tab[x][y] == '1' || tab[x][y] == 'Z')
 		return (0);
 	if (tab[x][y] == 'E')
 		return (1);
@@ -61,7 +95,8 @@ int	backtracking(struct s_data *t_data)
 		}
 		x++;
 	}
-	if (backtracking_the_game(t_data, tab_tow, lo[0][0], lo[0][1]) == 0)
+	if (backtracking_the_game(t_data, tab_tow, lo[0][0], lo[0][1]) == 0
+		|| no_c(t_data, lo[0][0], lo[0][1]) == 0)
 		return (free_it(tab_tow), 1);
 	return (free_it(tab_tow), 0);
 }
