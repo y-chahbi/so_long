@@ -6,26 +6,61 @@
 /*   By: ychahbi <ychahbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 11:41:53 by ychahbi           #+#    #+#             */
-/*   Updated: 2022/12/28 19:31:44 by ychahbi          ###   ########.fr       */
+/*   Updated: 2023/02/18 18:34:55 by ychahbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	if_part_2(struct s_data *t_data, int countt, int count, int cc)
+void	enemy_moves(struct s_data *t_data, int countt, int count)
 {
+	if (t_data->enm_side == 0)
+	{
+		if (t_data->map_to_tab[countt][count - 1] == '0')
+		{
+			t_data->map_to_tab[countt][count - 1] = 'I';
+			t_data->map_to_tab[countt][count] = '0';
+		}
+		else
+			t_data->enm_side = 1;
+		if (t_data->map_to_tab[countt][count - 1] == 'P')
+			put_youlose(t_data);
+	}
+	if (t_data->enm_side == 1)
+	{
+		if (t_data->map_to_tab[countt][count + 1] == '0')
+		{
+			t_data->map_to_tab[countt][count + 1] = 'I';
+			t_data->map_to_tab[countt][count] = '0';
+		}
+		else
+			t_data->enm_side = 0;
+		if (t_data->map_to_tab[countt][count + 1] == 'P')
+			put_youlose(t_data);
+	}
+}
+
+void	if_part_2(struct s_data *t_data, int countt, int count, int cc)
+{
+	static int		c;
+
+	if (c > 100)
+		c = 0;
 	if (t_data->map_to_tab[countt][count] == 'C')
 		mlx_put_image_to_window(t_data->mlx, t_data->mlx_win,
 			t_data->img_coll, 96 * count, countt * 96);
 	if (t_data->map_to_tab[countt][count] == 'I' && cc <= 250)
 		mlx_put_image_to_window(t_data->mlx, t_data->mlx_win,
 			t_data->img_enm, 96 * count, countt * 96);
+	if (t_data->map_to_tab[countt][count] == 'I' && c == 10)
+		enemy_moves(t_data, countt, count);
 	if (t_data->map_to_tab[countt][count] == 'I' && cc > 250)
 		mlx_put_image_to_window(t_data->mlx, t_data->mlx_win,
 			t_data->img_enm_rev, 96 * count, countt * 96);
+	c++;
 }
 
-static void	if_shorts(struct s_data *t_data, int countt, int count, int cc)
+void	if_shorts(struct s_data *t_data, int countt, int count, int cc)
 {
 	char	*reload;
 

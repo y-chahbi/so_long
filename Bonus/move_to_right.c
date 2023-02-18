@@ -6,7 +6,7 @@
 /*   By: ychahbi <ychahbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 16:15:11 by ychahbi           #+#    #+#             */
-/*   Updated: 2022/12/28 19:32:39 by ychahbi          ###   ########.fr       */
+/*   Updated: 2023/02/18 18:37:00 by ychahbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,36 +18,6 @@ static void	func_short(struct s_data *t_data, int i, int j)
 	t_data->map_to_tab[i][j + 1] = 'P';
 	t_data->count++;
 	t_data->player_side = 0;
-}
-
-static void	put_youwin(struct s_data *t_data)
-{
-	int	i;
-
-	i = 0;
-	while (t_data->map_to_tab[i])
-	{
-		free(t_data->map_to_tab[i]);
-		i++;
-	}
-	free(t_data->map_to_tab);
-	ft_putstr("You win");
-	exit(0);
-}
-
-static void	put_youlose(struct s_data *t_data)
-{
-	int	i;
-
-	i = 0;
-	while (t_data->map_to_tab[i])
-	{
-		free(t_data->map_to_tab[i]);
-		i++;
-	}
-	free(t_data->map_to_tab);
-	ft_putstr("You Lose!");
-	exit(0);
 }
 
 static void	while_func(struct s_data *t_data, int i, int j)

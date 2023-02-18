@@ -6,7 +6,7 @@
 /*   By: ychahbi <ychahbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 19:01:35 by ychahbi           #+#    #+#             */
-/*   Updated: 2022/12/31 18:52:41 by ychahbi          ###   ########.fr       */
+/*   Updated: 2023/02/18 16:42:05 by ychahbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,10 @@ int		backtracking(struct s_data *t_data);
 void	*ft_calloc(size_t count, size_t size);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
+int		check___ones(char *s);
+void	iniit(struct s_data *t_data, char *s, int *fd);
+int		cheak_open(char *s);
+int		while___(char *first_line, char *last_line, int i);
+void	mlx_p(struct s_data *t_data, int *width, int *height);
+void	my_last_line_last_check(struct s_data *t_data, int count, int len_size);
 #endif

@@ -6,7 +6,7 @@
 /*   By: ychahbi <ychahbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 08:07:45 by ychahbi           #+#    #+#             */
-/*   Updated: 2022/12/24 18:35:05 by ychahbi          ###   ########.fr       */
+/*   Updated: 2023/02/15 14:14:12 by ychahbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,27 @@ int	cheak_map_path(char *s)
 		i++;
 	}
 	return (0);
+}
+
+void	my_last_line_last_check(struct s_data *t_data, int count, int len_size)
+{
+	int		fd;
+	int		i;
+	char	*line;
+
+	fd = open(t_data->map_path, O_RDONLY);
+	i = 1;
+	line = NULL;
+	while (i <= count)
+	{
+		free(line);
+		line = get_next_line(fd);
+		i++;
+	}
+	if (len_size - 1 != str_len(line))
+	{
+		puts("Error");
+		free(line);
+		exit(1);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: ychahbi <ychahbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 16:22:14 by ychahbi           #+#    #+#             */
-/*   Updated: 2022/12/28 19:32:07 by ychahbi          ###   ########.fr       */
+/*   Updated: 2023/02/18 18:32:26 by ychahbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	func_short(struct s_data *t_data, int i, int j)
 	t_data->count++;
 }
 
-static void	put_youwin(struct s_data *t_data)
+void	put_youwin(struct s_data *t_data)
 {
 	int	i;
 
@@ -34,7 +34,7 @@ static void	put_youwin(struct s_data *t_data)
 	exit(0);
 }
 
-static void	put_youlose(struct s_data *t_data)
+void	put_youlose(struct s_data *t_data)
 {
 	int	i;
 

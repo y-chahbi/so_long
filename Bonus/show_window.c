@@ -6,7 +6,7 @@
 /*   By: ychahbi <ychahbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:34:00 by ychahbi           #+#    #+#             */
-/*   Updated: 2023/01/21 09:20:23 by ychahbi          ###   ########.fr       */
+/*   Updated: 2023/02/15 14:21:01 by ychahbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,27 +44,29 @@ int	exit_game(struct s_data *t_data)
 	return (0);
 }
 
-static void	mlx_put_t_data(struct s_data *t_data, int *width, int *height)
+void	in__pics(struct s_data *t_data, int *width, int *height)
+{
+	mlx_p(t_data, width, height);
+	if (!t_data->img_exit || !t_data->img_exit_2
+		|| !t_data->img_freespace || !t_data->img_coll
+		|| !t_data->img_player || !t_data->img_player_2
+		|| !t_data->img_wall || !t_data->img_enm
+		|| !t_data->img_enm_rev)
+	{
+		ft_putstr("Mlx - Pics -> Error!");
+		exit(1);
+	}
+}
+
+void	mlx_put_t_data(struct s_data *t_data, int *width, int *height)
 {
 	t_data->mlx = mlx_init();
-	t_data->img_exit = mlx_xpm_file_to_image(
-			t_data->mlx, "pics/exit.xmp", width, height);
-	t_data->img_exit_2 = mlx_xpm_file_to_image(
-			t_data->mlx, "pics/exit_2.xmp", width, height);
-	t_data->img_freespace = mlx_xpm_file_to_image(
-			t_data->mlx, "pics/freespace.xmp", width, height);
-	t_data->img_player = mlx_xpm_file_to_image(
-			t_data->mlx, "pics/player.xmp", width, height);
-	t_data->img_player_2 = mlx_xpm_file_to_image(
-			t_data->mlx, "pics/player_2.xmp", width, height);
-	t_data->img_wall = mlx_xpm_file_to_image(
-			t_data->mlx, "pics/wall.xmp", width, height);
-	t_data->img_coll = mlx_xpm_file_to_image(
-			t_data->mlx, "pics/coll.xmp", width, height);
-	t_data->img_enm = mlx_xpm_file_to_image(
-			t_data->mlx, "pics/enm.xmp", width, height);
-	t_data->img_enm_rev = mlx_xpm_file_to_image(
-			t_data->mlx, "pics/enm_rev.xmp", width, height);
+	if (!t_data->mlx)
+	{
+		ft_putstr("Mlx -> Error!");
+		exit(1);
+	}
+	in__pics(t_data, width, height);
 }
 
 void	show_the_window(struct s_data *t_data)
@@ -73,12 +75,19 @@ void	show_the_window(struct s_data *t_data)
 	int	width;
 
 	t_data->count = 0;
+	t_data->enm_side = 0;
 	mlx_put_t_data(t_data, &width, &height);
 	t_data->mlx_win = mlx_new_window(
 			t_data->mlx, t_data->map_width * 96,
 			t_data->map_height * 96, "So Long");
+	if (!t_data->mlx_win)
+	{
+		ft_putstr("Error!");
+		exit(1);
+	}
 	mlx_loop_hook(t_data->mlx, game_loop, t_data);
 	mlx_hook(t_data->mlx_win, 02, 0, key_handler, t_data);
 	mlx_hook(t_data->mlx_win, 17, 0, exit_game, t_data);
 	mlx_loop(t_data->mlx);
+	free(t_data);
 }

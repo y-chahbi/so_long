@@ -6,7 +6,7 @@
 /*   By: ychahbi <ychahbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 21:49:58 by ychahbi           #+#    #+#             */
-/*   Updated: 2023/01/21 11:26:20 by ychahbi          ###   ########.fr       */
+/*   Updated: 2023/02/18 18:28:26 by ychahbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,20 @@ static void	calc_letter(char *str, int *c, int *e, int *p)
 	int	i;
 
 	i = 0;
-	while (str[i] != '\0')
+	while (str[i] != '\n')
 	{
 		if (str[i] == 'P')
 			(*p)++;
-		if (str[i] == 'E')
+		else if (str[i] == 'E')
 			(*e)++;
-		if (str[i] == 'C')
+		else if (str[i] == 'C')
 			(*c)++;
+		else if (str[i] != '0' && str[i] != '1' && str[i] != 'C'
+			&& str[i] != 'P' && str[i] != 'E')
+		{
+			ft_putstr("Error\n");
+			exit(1);
+		}
 		i++;
 	}
 }
@@ -36,7 +42,7 @@ static void	count_init(int *c, int *e, int *p)
 	*p = 0;
 }
 
-static int	cheak_open(char *s)
+int	cheak_open(char *s)
 {
 	int	fd;
 
@@ -62,14 +68,17 @@ int	while_count(struct s_data *t_data, char *last_line, int len_size, int fd)
 		count++;
 		if (str_len(last_line) != len_size)
 			return (ft_putstr("(Line size) >> "), 1);
-		if (last_line[0] != '1' || last_line[len_size -2] != '1')
+		if (last_line[0] != '1' || last_line[str_len(last_line) - 2] != '1')
 			return (ft_putstr("(dont't have closed sides) >> "), 1);
 		calc_letter(last_line, &c_count, &e_count, &p_count);
 	}
+	if (check___ones(last_line) == 0)
+		return (ft_putstr("(last line ) >> "), 1);
 	if (p_count != 1 || e_count != 1 || c_count < 1)
 		return (ft_putstr("(one of elements or all not exist) >> "), 1);
 	if (count < 3)
 		return (ft_putstr("(map counine less lines) >> "), 1);
+	my_last_line_last_check(t_data, count, len_size);
 	t_data->colloctive_s = c_count;
 	return (0);
 }
@@ -82,23 +91,20 @@ int	cheack_map(char *s, struct s_data *t_data)
 	int		fd;
 	int		i;
 
-	t_data->map_path = s;
-	t_data->map_to_tab = map_to_table(t_data);
-	fd = cheak_open(s);
+	iniit(t_data, s, &fd);
 	first_line = get_next_line(fd);
+	if (check___ones(first_line) == 0)
+		return (ft_putstr("(First line ) >> "), 1);
 	len_size = str_len(first_line);
 	last_line = ft_calloc(sizeof(char), len_size);
-	while_count(t_data, last_line, len_size, fd);
+	if (while_count(t_data, last_line, len_size, fd) == 1)
+		return (1);
 	if (backtracking(t_data) == 1)
 		return (ft_putstr("(The player can't win the game) --> "), 1);
 	if (t_data->map_height > 18 || t_data->map_width > 34)
 		return (ft_putstr("(Map Large) --> "), 1);
 	i = 0;
-	while (first_line[i] != '\n' && last_line[i] != '\n')
-	{
-		if (last_line[i] != '1' || (first_line[i]) != '1')
-			return (ft_putstr("(Closed side is missing) >> "), 1);
-		i++;
-	}
+	if (while___(first_line, last_line, i) == 1)
+		return (1);
 	return (free(first_line), free(last_line), 0);
 }

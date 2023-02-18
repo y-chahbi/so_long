@@ -6,7 +6,7 @@
 /*   By: ychahbi <ychahbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 16:21:24 by ychahbi           #+#    #+#             */
-/*   Updated: 2022/12/28 03:15:18 by ychahbi          ###   ########.fr       */
+/*   Updated: 2023/02/18 18:37:05 by ychahbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,36 +17,6 @@ static void	func_short(struct s_data *t_data, int i, int j)
 	t_data->map_to_tab[i][j] = '0';
 	t_data->map_to_tab[i - 1][j] = 'P';
 	t_data->count++;
-}
-
-static void	put_youwin(struct s_data *t_data)
-{
-	int	i;
-
-	i = 0;
-	while (t_data->map_to_tab[i])
-	{
-		free(t_data->map_to_tab[i]);
-		i++;
-	}
-	free(t_data->map_to_tab);
-	ft_putstr("You win");
-	exit(0);
-}
-
-static void	put_youlose(struct s_data *t_data)
-{
-	int	i;
-
-	i = 0;
-	while (t_data->map_to_tab[i])
-	{
-		free(t_data->map_to_tab[i]);
-		i++;
-	}
-	free(t_data->map_to_tab);
-	ft_putstr("You Lose!");
-	exit(0);
 }
 
 static void	if_func(struct s_data *t_data, int i, int j)
